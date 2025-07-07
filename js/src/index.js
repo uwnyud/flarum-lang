@@ -1,6 +1,6 @@
 import app from 'flarum/forum/app';
 
-app.initializers.add('your-namespace/language-switcher', () => {
+app.initializers.add('manubazsi/language-switcher', () => {
   // 1. ESSENTIAL REFRESH FUNCTION
   function refreshLanguage() {
     // Get currently selected language from button text
