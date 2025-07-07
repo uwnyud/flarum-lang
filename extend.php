@@ -1,6 +1,6 @@
 <?php
 
-namespace YourNamespace\LanguageSwitcher;
+namespace manubazsi\language-switcher;
 
 use Flarum\Extend;
 
