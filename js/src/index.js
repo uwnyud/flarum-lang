@@ -28,6 +28,8 @@ app.initializers.add('your-namespace/language-switcher', () => {
     const langMap = {
       'Hungarian': 'hu',
       'English': 'en'
+      'Germany': 'ge' 
+      'France': 'fr'
       // Add more languages as needed
     };
     return langMap[langName] || null;
