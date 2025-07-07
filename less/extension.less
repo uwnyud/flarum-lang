@@ -1,0 +1,17 @@
+/* By default ONLY "no-lang" content is visible */
+.no-lang {
+  display: block;
+}
+
+/* By default all language variants are hidden */
+[class^="language-"] {
+  display: none;
+}
+
+/* If body has language-X class, show that language */
+body.language-hu .language-hu,
+body.language-en .language-en,
+body.language-de .language-de,
+body.language-fr .language-fr {
+  display: block;
+}
