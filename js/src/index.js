@@ -1,58 +1,46 @@
-import app from 'flarum/forum/app';
-
 app.initializers.add('manubazsi/language-switcher', () => {
-  // 1. ESSENTIAL REFRESH FUNCTION
+  // Nyelvfrissítő funkció
   function refreshLanguage() {
-    // Get currently selected language from button text
     const activeButton = document.querySelector('.Dropdown-toggle .Button-label');
-    const activeLang = activeButton ? activeButton.textContent.trim() : 'Hungarian';
+    const activeLang = activeButton?.textContent.trim() || 'Hungarian';
     
-    // Hide all language elements
     document.querySelectorAll('[class*="language-"], .no-lang').forEach(el => {
       el.style.display = 'none';
     });
     
-    // Show current language elements
     const langClass = getLangClass(activeLang);
     const activeElements = langClass 
       ? document.querySelectorAll(`.language-${langClass}`) 
       : document.querySelectorAll('.no-lang');
     
-    activeElements.forEach(el => {
-      el.style.display = 'block';
-    });
+    activeElements.forEach(el => el.style.display = 'block');
   }
 
-  // Helper function to convert language name to class
+  // Nyelv osztály generálás
   function getLangClass(langName) {
     const langMap = {
       'Hungarian': 'hu',
-      'English': 'en'
-      'Germany': 'ge' 
-      'France': 'fr'
-      // Add more languages as needed
+      'English': 'en',
+      'German': 'de',
+      'French': 'fr'
     };
     return langMap[langName] || null;
   }
 
-  // 2. COMPREHENSIVE EVENT LISTENING
+  // Eseményfigyelők beállítása
   function setupLanguageWatcher() {
-    // Immediate refresh
     refreshLanguage();
     
-    // Watch for button clicks
     document.addEventListener('click', (e) => {
-      if (e.target.closest('.Dropdown-menu button') || 
-          e.target.closest('.Dropdown-toggle')) {
+      if (e.target.closest('.Dropdown-menu button') || e.target.closest('.Dropdown-toggle')) {
         setTimeout(refreshLanguage, 100);
       }
     });
     
-    // Periodic check (safety net)
     setInterval(refreshLanguage, 100);
   }
 
-  // 3. INITIALIZATION
+  // Inicializálás
   document.addEventListener('DOMContentLoaded', setupLanguageWatcher);
-  setTimeout(setupLanguageWatcher, 1000); // Just to be sure
+  setTimeout(setupLanguageWatcher, 1000);
 });
